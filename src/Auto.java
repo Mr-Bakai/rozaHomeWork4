@@ -1,9 +1,56 @@
-import org.w3c.dom.ls.LSOutput;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class Runner extends Thread {
+public class Auto extends Thread {
+    Auto auto;
 
-    public void run() {
-        Runner runner2 = new Runner();
+    public Auto(String name, Auto auto) {
+        super(name);
+        this.auto = auto;
+    }
+
+    public Auto(String name) {
+        super(name);
+    }
+
+
+
+    public void run(){
+        if (auto != null){
+            try {
+                sleep(1000);
+                auto.start();
+            } catch (NullPointerException | InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (this.getName().equals("Auto5")) {
+                System.out.println("\n" + this.getName() + " Gets the Stick \uD83D\uDD25");
+                System.out.println(this.getName() + " Drives to finish \uD83C\uDFC1");
+                System.out.println(this.getName() + " Drives to  " + auto.getName());
+            } else {
+                System.out.println("\n" + this.getName() + " Gets the Stick \uD83D\uDD25");
+                System.out.println(this.getName() + " Drives to  " + auto.getName());
+            }
+
+            if(auto.getName().equals("Auto1")){
+                System.out.println("\n" + auto.getName() + " Gets the stick \uD83D\uDD25");
+                System.out.println(auto.getName() + " Drives to finish \uD83C\uDFC1");
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+        // IN THIS CASE YOU HAVE ONE THREAD RUNNING ONLY AND YOU HAVE STARTED ONLY 1 THREAD WHICH IS AUTO1
+
+       /* Runner runner2 = new Runner();
         runner2.setName("Runner2");
 
         Runner runner3 = new Runner();
@@ -25,6 +72,7 @@ public class Runner extends Thread {
 
         int j;
 
+
         for (j = 0; j < mRunners.length; j++) {
             System.out.println(mRunners[j].getName() + " Gets the stick \uD83D\uDD25");
             try {
@@ -38,7 +86,6 @@ public class Runner extends Thread {
             }
 
         }
-
 
         System.out.println("-----------------------");
 
@@ -61,6 +108,8 @@ public class Runner extends Thread {
                 System.out.println(mRunners[j].getName() + " Walks to Finish \uD83C\uDFC1" );
             }
         }
-    }
-}
+
+        */
+
+
 
